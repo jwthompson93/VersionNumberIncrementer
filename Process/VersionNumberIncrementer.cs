@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VersionNumberIncrementer.Handler;
+﻿using VersionNumberIncrementer.Handler;
+using VersionNumberIncrementer.Objects;
 using VersionNumberIncrementer.Splitter;
 
-namespace VersionNumberIncrementer
+namespace VersionNumberIncrementer.Process
 {
-    public class VersionNumberIncrementer
+    public class VersionNumberProcess
     {
-        public void process()
+        public void Process()
         {
             // Obtains the Version Number from the source
-            string versionNumber = GetVersionNumber();
+            string versionNumberString = GetVersionNumber();
 
             // Splits the version number into an integer array
-            int[] versionNumberArray = SplitVersionNumber(versionNumber);
+            int[] versionNumberArray = SplitVersionNumber(versionNumberString);
 
-
+            // Places the integer array into a VersionNumber object
+            VersionNumber versionNumber = new VersionNumber(versionNumberArray);
         }
 
         private string GetVersionNumber()
