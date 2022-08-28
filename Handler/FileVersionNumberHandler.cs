@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿
 
 namespace VersionNumberIncrementer.Handler
 {
@@ -46,12 +41,20 @@ namespace VersionNumberIncrementer.Handler
                 File.WriteAllText(filePath, versionNumber);
                 return true;
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException fnfex)
             {
                 // Prints a console error and exits the program when the file path
                 // cannot be found
                 Console.WriteLine("ERROR: File path not found: " + filePath);
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(fnfex.Message);
+                System.Environment.Exit(0);
+            }
+            catch (UnauthorizedAccessException uaex)
+            {
+                // Prints a console error and exits the program when the file doesn't
+                // have permissions to write to the file
+                Console.WriteLine("ERROR: Cannot write to file: " + filePath);
+                Console.WriteLine(uaex.Message);
                 System.Environment.Exit(0);
             }
 

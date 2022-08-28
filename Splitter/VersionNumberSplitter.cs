@@ -8,23 +8,21 @@ namespace VersionNumberIncrementer.Splitter
 {
     public class VersionNumberSplitter
     {
-        public int[] SplitVersionNumber(string VersionNumber)
+        public int[] SplitVersionNumber(string VersionNumber, char delimiter)
         {
-            int[] versionNumberArray = { 0, 0, 0, 0 };
+            // Splits the array using a delimiter
+            string[] VersionNumberStringArray = VersionNumber.Split(delimiter);
+            // Creates an array of the same length to store the numeric values
+            int[] versionNumberArray = new int[VersionNumberStringArray.Length];
 
-            try
+            // Iterates through the VersionNumberString array and attempts to parse the String into an integer
+            // If the parse fails, a FormatException is thrown
+            for (int i = 0; i < VersionNumberStringArray.Length; i++)
             {
-                string[] VersionNumberStringArray = VersionNumber.Split('.');
-                Console.WriteLine(VersionNumberStringArray);
-                versionNumberArray = Array.ConvertAll(VersionNumberStringArray, v => int.Parse(v));
-                Console.WriteLine(versionNumberArray);
-            }
-            catch (FormatException fex)
-            {
-                Console.WriteLine(fex.Message);
-                Console.WriteLine("ERROR: Version Number contains non-numeric values");
-                Console.WriteLine("Exiting...");
-                System.Environment.Exit(0);
+                if (!int.TryParse(VersionNumberStringArray[i], out versionNumberArray[i]))
+                {
+                    throw new FormatException();
+                }
             }
 
             return versionNumberArray;
