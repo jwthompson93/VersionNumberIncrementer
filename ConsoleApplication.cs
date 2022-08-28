@@ -1,5 +1,5 @@
 ﻿
-using VersionNumberIncrementer.Handler;
+using VersionNumberIncrementer.Process;
 
 namespace ConsoleApplication
 {
@@ -7,6 +7,8 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
+            VersionNumberProcess versionNumberIncrementer = new VersionNumberProcess();
+            versionNumberIncrementer.Process();
         }
     }
 }
