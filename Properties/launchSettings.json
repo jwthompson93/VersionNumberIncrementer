@@ -2,7 +2,7 @@
   "profiles": {
     "VersionNumberIncrementer": {
       "commandName": "Project",
-      "commandLineArgs": "--version major"
+      "commandLineArgs": "--version_type major"
     }
   }
 }

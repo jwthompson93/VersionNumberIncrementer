@@ -27,7 +27,7 @@ namespace VersionNumberIncrementer.Process
 
             IncrementVersionNumber(version);
 
-            
+            WriteVersionNumber();
         }
 
         // Gets the version number from the file specified
@@ -65,7 +65,14 @@ namespace VersionNumberIncrementer.Process
         // Writes the version number to the file
         private void WriteVersionNumber()
         {
-            bool isWritten = versionNumberHandler.WriteVersionNumber(versionNumberObject.getFormattedVersionNumber());
+            if(versionNumberHandler.WriteVersionNumber(versionNumberObject.getFormattedVersionNumber()))
+            {
+                Console.WriteLine("New version written to file");
+            }
+            else
+            {
+                Console.WriteLine("Unable to write new version to file");
+            }
         }
     }
 }

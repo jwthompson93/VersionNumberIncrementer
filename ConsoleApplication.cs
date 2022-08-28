@@ -10,12 +10,15 @@ namespace ConsoleApplication
         public static void Main(string[] args)
         {
             Parser.Default.ParseArguments<Options>(args)
-                .WithParsed<Options>(Run);
+                .WithParsed(Run)
+                .WithNotParsed(o => Console.WriteLine("Not working!"));
         }
 
         private static void Run(Options opts)
         {
             string version = opts.version.ToLower();
+
+            // Determines whether the input is valid for the version_type
             if (version.Equals("major") || version.Equals("minor"))
             {
                 VersionNumberProcess versionNumberProcess = new VersionNumberProcess();

@@ -4,7 +4,7 @@ namespace VersionNumberIncrementer.Objects
 {
     public class Options
     {
-        [Option('v', "version", Required = true, HelpText = "Determines which number will be incremented (Major | Minor)")]
+        [Option("version_type", Required = true, HelpText = "Determines which number will be incremented (Major | Minor)")]
         public string version { get; set; }
 
         [Option("major_number_position", Required = false, HelpText = "Determines where the major version number is positioned in the Version Number")]
