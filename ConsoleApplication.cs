@@ -16,13 +16,15 @@ namespace ConsoleApplication
 
         private static void Run(Options opts)
         {
-            string version = opts.version.ToLower();
+            string version = opts.version_type.ToLower();
 
             // Determines whether the input is valid for the version_type
             if (version.Equals("major") || version.Equals("minor"))
             {
-                VersionNumberProcess versionNumberProcess = new VersionNumberProcess();
-                versionNumberProcess.Process(version);
+                VersionNumberProcess versionNumberProcess = 
+                    new VersionNumberProcess(opts.version_number_file);
+                versionNumberProcess.Process(version, opts.major_number_position, 
+                    opts.minor_number_position, opts.version_number_separator);
             }
             else
             {
