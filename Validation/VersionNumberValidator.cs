@@ -22,7 +22,7 @@ namespace VersionNumberIncrementer.Validation
 
             if(!CheckIfMajorIsLowestPosition(versionNumber.majorNumberPosition, versionNumber.minorNumberPosition))
             {
-                throw new Exception("Major release number must be lower than the Minor release number");
+                throw new Exception("Minor release number must not be higher or equal to the Major Release number");
             }
 
             return true;

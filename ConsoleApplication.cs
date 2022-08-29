@@ -10,8 +10,7 @@ namespace ConsoleApplication
         public static void Main(string[] args)
         {
             Parser.Default.ParseArguments<Options>(args)
-                .WithParsed(Run)
-                .WithNotParsed(o => Console.WriteLine("Not working!"));
+                .WithParsed(Run);
         }
 
         private static void Run(Options opts)
@@ -28,7 +27,7 @@ namespace ConsoleApplication
             }
             else
             {
-                Console.WriteLine("ERROR: --version option is required to be either (major | minor)");
+                Console.WriteLine("ERROR: --release_type option is required to be either (major | minor)");
                 Console.WriteLine("Exiting...");
                 System.Environment.Exit(0);
             }

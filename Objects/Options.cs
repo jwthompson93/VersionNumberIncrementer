@@ -4,10 +4,10 @@ namespace VersionNumberIncrementer.Objects
 {
     public class Options
     {
-        [Option("release_type", Required = true, HelpText = "Determines which number will be incremented (Major | Minor)")]
+        [Option("release_type", Required = true, HelpText = "Determines the release type to be incremented (Major | Minor)")]
         public string release_type { get; set; }
 
-        [Option("version_number_file", Required = true, HelpText = "THe file path for the Version Number file")]
+        [Option("version_number_file", Required = true, HelpText = "The file path for the Version Number file")]
         public string version_number_file { get; set; }
 
         [Option("major_release_position", Default = 3, Required = false, HelpText = "Determines where the major version number is positioned in the Version Number")]

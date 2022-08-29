@@ -1,6 +1,7 @@
 ﻿using VersionNumberIncrementer.Handler;
 using VersionNumberIncrementer.Objects;
 using VersionNumberIncrementer.Splitter;
+using VersionNumberIncrementer.Validation;
 
 namespace VersionNumberIncrementer.Process
 {
@@ -27,16 +28,32 @@ namespace VersionNumberIncrementer.Process
             versionNumberObject = new VersionNumber(versionNumberArray, 
                 majorVersionPosition, minorVersionPosition);
 
-            IncrementVersionNumber(version);
+            try
+            {
+                // Validates the version number
+                new VersionNumberValidator().Validate(versionNumberObject);
 
-            WriteVersionNumber();
+                // Increments the version number
+                IncrementVersionNumber(version);
+
+                // Writes the version number to file
+                WriteVersionNumber();
+            }
+            catch (Exception ex)
+            {
+                // If validation fails, an exception is thrown, the
+                // message is outputted and the application is exited
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Exiting...");
+                System.Environment.Exit(0);
+            }
         }
 
         // Gets the version number from the file specified
         private string GetVersionNumber()
         {
             string versionNumber = versionNumberHandler.ReadVersionNumber();
-            Console.WriteLine("Current Version: " + versionNumber);
+            Console.WriteLine("Current Version: {0}", versionNumber);
 
             return versionNumber;
         }
@@ -61,7 +78,7 @@ namespace VersionNumberIncrementer.Process
                 versionNumberObject.incrementMinorVersion();
             }
 
-            Console.WriteLine("New Version: " + versionNumberObject.getFormattedVersionNumber());
+            Console.WriteLine("New Version: {0}", versionNumberObject.getFormattedVersionNumber());
         }
 
         // Writes the version number to the file
