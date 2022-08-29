@@ -8,9 +8,9 @@ namespace VersionNumberIncrementer.Objects
 {
     public class VersionNumber
     {
-        private int majorNumberPosition;
-        private int minorNumberPosition;
-        private int[] versionNumberArray;
+        public int majorNumberPosition { get; }
+        public int minorNumberPosition { get; }
+        public int[] versionNumberArray { get; }
 
 
         public VersionNumber(int[] versionNumberArray)
