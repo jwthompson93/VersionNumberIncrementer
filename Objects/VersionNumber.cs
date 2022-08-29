@@ -8,23 +8,18 @@ namespace VersionNumberIncrementer.Objects
 {
     public class VersionNumber
     {
-        private int majorNumberPosition;
-        private int minorNumberPosition;
-        private int[] versionNumberArray;
-
-
-        public VersionNumber(int[] versionNumberArray)
-        {
-            this.versionNumberArray = versionNumberArray;
-            this.majorNumberPosition = 2;
-            this.minorNumberPosition = 3;
-        }
+        public int majorNumberPosition { get; }
+        public int minorNumberPosition { get; }
+        public int[] versionNumberArray { get; }
 
         public VersionNumber(int[] versionNumberArray, int majorNumberPosition, int minorNumberPosition)
         {
             this.versionNumberArray = versionNumberArray;
+            Console.WriteLine("Version Number Length: {0}", versionNumberArray.Length);
             this.majorNumberPosition = majorNumberPosition - 1;
+            Console.WriteLine("Major Release Position: {0}", majorNumberPosition);
             this.minorNumberPosition = minorNumberPosition - 1;
+            Console.WriteLine("Minor Release Position: {0}", minorNumberPosition);
         }
 
         public void incrementMajorVersion()
