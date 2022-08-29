@@ -9,21 +9,23 @@ namespace VersionNumberIncrementer.Process
         private VersionNumber versionNumberObject;
         private VersionNumberHandler versionNumberHandler;
 
-        public VersionNumberProcess()
+        public VersionNumberProcess(string filePath)
         {
-            versionNumberHandler = new FileVersionNumberHandler("..\\..\\..\\ProductInfo.txt");
+            versionNumberHandler = new FileVersionNumberHandler(filePath);
         }
 
-        public void Process(string version)
+        public void Process(string version, int majorVersionPosition, 
+            int minorVersionPosition, char separator)
         {
             // Obtains the Version Number from the source
             string versionNumberString = GetVersionNumber();
 
             // Splits the version number into an integer array
-            int[] versionNumberArray = SplitVersionNumber(versionNumberString);
+            int[] versionNumberArray = SplitVersionNumber(versionNumberString, separator);
 
             // Places the integer array into a VersionNumber object
-            versionNumberObject = new VersionNumber(versionNumberArray);
+            versionNumberObject = new VersionNumber(versionNumberArray, 
+                majorVersionPosition, minorVersionPosition);
 
             IncrementVersionNumber(version);
 
@@ -40,10 +42,10 @@ namespace VersionNumberIncrementer.Process
         }
 
         // Splits the version number in an array to be processed
-        private int[] SplitVersionNumber(string versionNumber)
+        private int[] SplitVersionNumber(string versionNumber, char separator)
         {
             VersionNumberSplitter versionNumberSplitter = new VersionNumberSplitter();
-            int[] versionNumberArray = versionNumberSplitter.SplitVersionNumber(versionNumber, '.');
+            int[] versionNumberArray = versionNumberSplitter.SplitVersionNumber(versionNumber, separator);
             return versionNumberArray;
         }
 

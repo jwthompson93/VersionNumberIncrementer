@@ -2,7 +2,7 @@
   "profiles": {
     "VersionNumberIncrementer": {
       "commandName": "Project",
-      "commandLineArgs": "--version_type major"
+      "commandLineArgs": "--version_type major --version_number_file ../../../ProductInfo.txt"
     }
   }
 }
